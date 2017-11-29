@@ -5,6 +5,6 @@ Sets up saving and loading of Advanced Custom Fields settings using [ACF Local J
 Local `.json` files are stored in `your-theme-name/resources/assets/acf-json`
 
 To install, run the following in your Sage9-based theme directory:
-```json
-"mwdelaney/sage-advanced-custom-fields": "@dev"
+```bash
+composer require "mwdelaney/sage-advanced-custom-fields": "@dev"
 ```
