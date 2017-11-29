@@ -11,7 +11,6 @@ namespace App;
  * @param  string $path unmodified local path for acf-json
  * @return string       our modified local path for acf-json
  */
-
 add_filter('acf/settings/save_json', function($path) {
   
   // Set Sage9 friendly path at /theme-directory/resources/assets/acf-json
