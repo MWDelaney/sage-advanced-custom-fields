@@ -1,0 +1,19 @@
+{
+  "name": "mwdelaney/sage-advanced-custom-fields",
+  "description": "Advanced Custom Fields local JSON setup for Sage 9 based themes",
+  "keywords": ["wordpress", "advanced custom fields", "json"],
+  "homepage": "https://github.com/MWDelaney/sage-advanced-custom-fields",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael W. Delaney",
+      "email": "michael@michaeldelaney.me"
+		}
+  ],
+  "require": {
+    "php": ">=5.3.2"
+  },
+	"autoload": {
+    "files": ["advanced-custom-fields.php"]
+  }
+}
