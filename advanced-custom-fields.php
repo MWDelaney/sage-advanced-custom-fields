@@ -6,6 +6,13 @@ namespace App;
  * Author: Michael W. Delaney
  */
 
+
+// Hide ACF menu item in Production
+if (WP_ENV == 'production') {
+  add_filter('acf/settings/show_admin', '__return_false');
+}
+
+
 /**
  * Set local json save path
  * @param  string $path unmodified local path for acf-json
