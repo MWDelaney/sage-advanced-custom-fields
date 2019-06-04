@@ -10,36 +10,39 @@ if (defined('WP_ENV') && WP_ENV == 'production') {
     add_filter('acf/settings/show_admin', '__return_false');
 }
 
-/**
- * Set local json save path
- * @param  string $path unmodified local path for acf-json
- * @return string       our modified local path for acf-json
- */
-add_filter('acf/settings/save_json', function ($path) {
+if (function_exists('add_filter')) {
 
-  // Set Sage9 friendly path at /theme-directory/resources/assets/acf-json
-    $path = get_stylesheet_directory() . '/assets/acf-json';
+  /**
+   * Set local json save path
+   * @param  string $path unmodified local path for acf-json
+   * @return string       our modified local path for acf-json
+   */
+    add_filter('acf/settings/save_json', function ($path) {
 
-    // If the directory doesn't exist, create it.
-    if (!is_dir($path)) {
-        mkdir($path);
-    }
+    // Set Sage9 friendly path at /theme-directory/resources/assets/acf-json
+        $path = get_stylesheet_directory() . '/assets/acf-json';
 
-    // Always return
-    return $path;
-});
+        // If the directory doesn't exist, create it.
+        if (!is_dir($path)) {
+            mkdir($path);
+        }
+
+        // Always return
+        return $path;
+    });
 
 
-/**
- * Set local json load path
- * @param  string $path unmodified local path for acf-json
- * @return string       our modified local path for acf-json
- */
-add_filter('acf/settings/load_json', function ($paths) {
+    /**
+     * Set local json load path
+     * @param  string $path unmodified local path for acf-json
+     * @return string       our modified local path for acf-json
+     */
+    add_filter('acf/settings/load_json', function ($paths) {
 
-  // append path
-    $paths[] = get_stylesheet_directory() . '/assets/acf-json';
+    // append path
+        $paths[] = get_stylesheet_directory() . '/assets/acf-json';
 
-    // return
-    return $paths;
-});
+        // return
+        return $paths;
+    });
+}
