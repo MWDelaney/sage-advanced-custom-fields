@@ -1,6 +1,4 @@
 <?php
-namespace App;
-
 /**
  * Advanced Custom Fields drop-in functionality for Sage 9
  * Version: 1.0
