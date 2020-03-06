@@ -1,6 +1,6 @@
 <?php
 /**
- * Advanced Custom Fields drop-in functionality for Sage 9
+ * Advanced Custom Fields drop-in functionality for Sage 9 and Sage 10
  * Version: 1.0
  * Author: Michael W. Delaney
  */
@@ -20,7 +20,14 @@ if (function_exists('add_filter')) {
     add_filter('acf/settings/save_json', function ($path) {
 
     // Set Sage9 friendly path at /theme-directory/resources/assets/acf-json
-        $path = get_stylesheet_directory() . '/assets/acf-json';
+
+        if(is_dir(get_stylesheet_directory() . '/assets/acf-json')) {
+          // This is Sage 9
+          $path = get_stylesheet_directory() . '/assets/acf-json';
+        } else {
+          // This is Sage 10
+          $path = get_stylesheet_directory() . '/resources/assets/acf-json';
+        }
 
         // If the directory doesn't exist, create it.
         if (!is_dir($path)) {
@@ -39,8 +46,15 @@ if (function_exists('add_filter')) {
      */
     add_filter('acf/settings/load_json', function ($paths) {
 
-    // append path
-        $paths[] = get_stylesheet_directory() . '/assets/acf-json';
+      if(is_dir(get_stylesheet_directory() . '/assets/acf-json')) {
+        // This is Sage 9
+        $path = get_stylesheet_directory() . '/assets/acf-json';
+      } else {
+        // This is Sage 10
+        $path = get_stylesheet_directory() . '/resources/assets/acf-json';
+      }
+
+        $paths[] = $path;
 
         // return
         return $paths;
