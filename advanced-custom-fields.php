@@ -1,6 +1,6 @@
 <?php
 /**
- * Advanced Custom Fields drop-in functionality for Sage 9 and Sage 10
+ * Advanced Custom Fields drop-in functionality for Sage 9
  * Version: 1.0
  * Author: Michael W. Delaney
  */
@@ -21,12 +21,12 @@ if (function_exists('add_filter')) {
 
     // Set Sage9 friendly path at /theme-directory/resources/assets/acf-json
 
-        if(is_dir(get_stylesheet_directory() . '/assets/acf-json')) {
-          // This is Sage 9
-          $path = get_stylesheet_directory() . '/assets/acf-json';
+        if (is_dir(get_stylesheet_directory() . '/assets/acf-json')) {
+            // This is Sage 9
+            $path = get_stylesheet_directory() . '/assets/acf-json';
         } else {
-          // This is Sage 10
-          $path = get_stylesheet_directory() . '/resources/assets/acf-json';
+            // This is Sage 10
+            $path = get_stylesheet_directory() . '/resources/assets/acf-json';
         }
 
         // If the directory doesn't exist, create it.
@@ -45,16 +45,11 @@ if (function_exists('add_filter')) {
      * @return string       our modified local path for acf-json
      */
     add_filter('acf/settings/load_json', function ($paths) {
+        // Sage 9 path
+        $paths[] = get_stylesheet_directory() . '/assets/acf-json';
 
-      if(is_dir(get_stylesheet_directory() . '/assets/acf-json')) {
-        // This is Sage 9
-        $path = get_stylesheet_directory() . '/assets/acf-json';
-      } else {
-        // This is Sage 10
-        $path = get_stylesheet_directory() . '/resources/assets/acf-json';
-      }
-
-        $paths[] = $path;
+        // Sage 10 path
+        $paths[] = get_stylesheet_directory() . '/resources/assets/acf-json';
 
         // return
         return $paths;
