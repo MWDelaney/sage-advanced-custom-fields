@@ -21,7 +21,7 @@ if (function_exists('add_filter')) {
 
     // Set Sage9 friendly path at /theme-directory/resources/assets/acf-json
 
-        if (is_dir(get_stylesheet_directory() . '/assets/acf-json')) {
+        if (is_dir(get_stylesheet_directory() . '/assets')) {
             // This is Sage 9
             $path = get_stylesheet_directory() . '/assets/acf-json';
         } else {
