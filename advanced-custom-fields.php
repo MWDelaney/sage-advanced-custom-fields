@@ -24,9 +24,15 @@ if (function_exists('add_filter')) {
         if (is_dir(get_stylesheet_directory() . '/assets')) {
             // This is Sage 9
             $path = get_stylesheet_directory() . '/assets/acf-json';
-        } else {
-            // This is Sage 10
+        } elseif (is_dir(get_stylesheet_directory() . '/resources/assets')) {
+            // This is old Sage 10
             $path = get_stylesheet_directory() . '/resources/assets/acf-json';
+        } elseif (is_dir(get_stylesheet_directory() . '/resources')) {
+            // This is Sage 10
+            $path = get_stylesheet_directory() . '/resources/acf-json';
+        } else {
+            // This probably isn't Sage
+            $path = get_stylesheet_directory() . '/acf-json';
         }
 
         // If the directory doesn't exist, create it.
@@ -48,8 +54,14 @@ if (function_exists('add_filter')) {
         // Sage 9 path
         $paths[] = get_stylesheet_directory() . '/assets/acf-json';
 
-        // Sage 10 path
+        // old Sage 10 path
         $paths[] = get_stylesheet_directory() . '/resources/assets/acf-json';
+
+        // Sage 10 path
+        $paths[] = get_stylesheet_directory() . '/resources/acf-json';
+
+        // Failsafe path
+        $paths[] = get_stylesheet_directory() . '/acf-json';
 
         // return
         return $paths;
